@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "VehicleGrpcService";
+
+package vehicle;
+
+service Vehicle {
+  rpc GetVehicle (SingleRequest) returns (VehicleModel);
+  rpc GetAll (Request) returns (QueryResponse);
+}
+
+message SingleRequest {
+  string id = 1;
+}
+
+message Request {
+  string query = 1;
+}
+
+message QueryResponse {
+  Request request = 1;
+  repeated VehicleModel results = 2;
+}
+
+message VehicleModel {
+  string id = 1;
+  string model = 2;
+  string manufacturer = 3;
+  int32 modelYear = 4;
+}
